@@ -5,6 +5,7 @@ It is implemented by using PyTorch library.
 
 **Udacity's original repo is [here](https://github.com/udacity/deep-learning-v2-pytorch/tree/master/project-dog-classification)**
 
+You can find the blog for this project [here](https://medium.com/@maanavshah/dog-breed-classifier-using-cnn-f480612ac27a)
 
 
 ## Project Overview
