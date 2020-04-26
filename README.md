@@ -31,27 +31,27 @@ Along with exploring state-of-the-art CNN models for classification  and localiz
 
 activation: relu
 
-(pool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)     
+(pool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
 
 activation: relu
 
-(conv2): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1)) 
+(conv2): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
 
 activation: relu
 
-(pool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False) 
+(pool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
 
-(conv3): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)) 
+(conv3): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
 
-(pool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False) 
+(pool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
 
-(dropout): Dropout(p=0.3) 
+(dropout): Dropout(p=0.3)
 
-(fc1): Linear(in_features=6272, out_features=500, bias=True) 
+(fc1): Linear(in_features=6272, out_features=500, bias=True)
 
-(dropout): Dropout(p=0.3) 
+(dropout): Dropout(p=0.3)
 
-(fc2): Linear(in_features=500, out_features=133, bias=True) 
+(fc2): Linear(in_features=500, out_features=133, bias=True)
 
 -----
 
@@ -70,6 +70,18 @@ Used **Resnet50** for transfer learnings
 Accuracy has been achieved up to **81%** with **30 epochs**
 
 
+## Result
+
+The six dogs that were sampled to check the algorithm were correctly identified as dogs. The breeds of 5 of 6 were accurate too
 
 
+[![](https://github.com/maanavshah/dog-breed-classifier/my_images/dog1.png)]
 
+[![](https://github.com/maanavshah/dog-breed-classifier/my_images/dog2.png)]
+
+
+The humans were also identified as human and a dog breed predicted — incidentally both were predicted as Dogue_de_bordeaux
+
+[![](https://github.com/maanavshah/dog-breed-classifier/my_images/human1.png)]
+
+[![](https://github.com/maanavshah/dog-breed-classifier/my_images/human2.png)]
