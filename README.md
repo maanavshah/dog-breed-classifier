@@ -53,6 +53,8 @@ activation: relu
 
 (fc2): Linear(in_features=500, out_features=133, bias=True)
 
+**Explanation:** First 2 conv layers I've applied kernel_size of 3 with stride 2, this will lead to downsize of input image by 2. after 2 conv layers, maxpooling with stride 2 is placed and this will lead to downsize of input image by 2. The 3rd conv layers is consist of kernel_size of 3 with stride 1, and this will not reduce input image. after final maxpooling with stride 2, the total output image size is downsized by factor of 32 and the depth will be 128. I've applied dropout of 0.3 in order to prevent overfitting. Fully-connected layer is placed and then, 2nd fully-connected layer is intended to produce final output_size which predicts classes of breeds.
+
 -----
 
 ​	Accuracy has been achieved up to **16%** with **20 epochs**
@@ -70,18 +72,24 @@ Used **Resnet50** for transfer learnings
 Accuracy has been achieved up to **81%** with **30 epochs**
 
 
+## Reference
+
+![Test Accuracy](https://github.com/maanavshah/dog-breed-classifier/blob/master/my_images/test_accuracy.png)
+
+
+
 ## Result
 
 The six dogs that were sampled to check the algorithm were correctly identified as dogs. The breeds of 5 of 6 were accurate too
 
 
-[![](https://github.com/maanavshah/dog-breed-classifier/my_images/dog1.png)]
+![Test Dog Image](https://github.com/maanavshah/dog-breed-classifier/blob/master/my_images/dog1.png)
 
-[![](https://github.com/maanavshah/dog-breed-classifier/my_images/dog2.png)]
+![Test Dog Image](https://github.com/maanavshah/dog-breed-classifier/blob/master/my_images/dog2.png)
 
 
 The humans were also identified as human and a dog breed predicted — incidentally both were predicted as Dogue_de_bordeaux
 
-[![](https://github.com/maanavshah/dog-breed-classifier/my_images/human1.png)]
+![Test Human Image](https://github.com/maanavshah/dog-breed-classifier/blob/master/my_images/human1.png)
 
-[![](https://github.com/maanavshah/dog-breed-classifier/my_images/human2.png)]
+![Test Human Image](https://github.com/maanavshah/dog-breed-classifier/blob/master/my_images/human2.png)
