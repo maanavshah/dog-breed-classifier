@@ -48,11 +48,11 @@ activation: relu
 
 (dropout): Dropout(p=0.3)
 
-(fc1): Linear(in_features=6272, out_features=500, bias=True)
+(fc1): Linear(in_features=6272, out_features=512, bias=True)
 
 (dropout): Dropout(p=0.3)
 
-(fc2): Linear(in_features=500, out_features=133, bias=True)
+(fc2): Linear(in_features=512, out_features=133, bias=True)
 
 **Explanation:** First 2 conv layers I've applied kernel_size of 3 with stride 2, this will lead to downsize of input image by 2. after 2 conv layers, maxpooling with stride 2 is placed and this will lead to downsize of input image by 2. The 3rd conv layers is consist of kernel_size of 3 with stride 1, and this will not reduce input image. after final maxpooling with stride 2, the total output image size is downsized by factor of 32 and the depth will be 128. I've applied dropout of 0.3 in order to prevent overfitting. Fully-connected layer is placed and then, 2nd fully-connected layer is intended to produce final output_size which predicts classes of breeds.
 
