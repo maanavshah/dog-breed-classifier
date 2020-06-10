@@ -13815,8 +13815,7 @@ detect a dog in dog_files: 92 / 100
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">normalize</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">0.485</span><span class="p">,</span> <span class="mf">0.456</span><span class="p">,</span> <span class="mf">0.406</span><span class="p">],</span>
-                                              <span class="n">std</span><span class="o">=</span><span class="p">[</span><span class="mf">0.229</span><span class="p">,</span> <span class="mf">0.224</span><span class="p">,</span> <span class="mf">0.225</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">normalize</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">0.485</span><span class="p">,</span> <span class="mf">0.456</span><span class="p">,</span> <span class="mf">0.406</span><span class="p">],</span> <span class="n">std</span><span class="o">=</span><span class="p">[</span><span class="mf">0.229</span><span class="p">,</span> <span class="mf">0.224</span><span class="p">,</span> <span class="mf">0.225</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -13914,8 +13913,8 @@ detect a dog in dog_files: 92 / 100
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer</strong>:
-I've applied RandomResizedCrop &amp; RandomHorizontalFlip to just <em>train_data</em>. This will do both image augmentations and resizing jobs. Image augmentation will give randomness to the dataset so, it prevents overfitting and I can expect better performance of model when it's predicting toward test_data. On the other hand, I've done Resize of (256) and then, center crop to make 224 X 224. Since valid_data will be used for validation check, I will not do image augmentations. For the test_data, I've applied only image resizing.</p>
+<p><strong>Answer</strong>:</p>
+<p>I have applied the RandomResizedCrop and RandomHorizontalFlip to the training data. This will allow me to have more images using image augmentation techniquest. It will generate more resized and flipped images. It will improve the performance of model and also helps to prevent overfitting of the data. For validation data, I have only applied the Resize and center crop transformations. And, for test data, I have only applied image resize.</p>
 
 </div>
 </div>
@@ -14046,26 +14045,29 @@ I've applied RandomResizedCrop &amp; RandomHorizontalFlip to just <em>train_data
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>(conv1): Conv2d(3, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))</p>
-<p>activation: relu</p>
-<p>(pool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)</p>
-<p>activation: relu</p>
-<p>(conv2): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))</p>
-<p>activation: relu</p>
-<p>(pool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)</p>
-<p>(conv3): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))</p>
-<p>(pool): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)</p>
-<p>(dropout): Dropout(p=0.3)</p>
-<p>(fc1): Linear(in_features=6272, out_features=512, bias=True)</p>
-<p>(dropout): Dropout(p=0.3)</p>
-<p>(fc2): Linear(in_features=512, out_features=133, bias=True)</p>
-<p><strong>explanations</strong>
-First 2 conv layers I've applied kernel_size of 3 with stride 2, this will lead to downsize of input image by 2. 
-after 2 conv layers, maxpooling with stride 2 is placed and this will lead to downsize of input image by 2. 
-The 3rd conv layers is consist of kernel_size of 3 with stride 1, and this will not reduce input image.
-after final maxpooling with stride 2, the total output image size is downsized by factor of 32 and the depth will be 128. 
-I've applied dropout of 0.3 in order to prevent overfitting.
-Fully-connected layer is placed and then, 2nd fully-connected layer is intended to produce final output_size which predicts classes of breeds.</p>
+<p>(conv1): Conv2d(3, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+(activation): F.relu
+(pool1): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)</p>
+<p>(conv2): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+(activation): F.relu
+(pool1): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)</p>
+<p>(conv3): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+(activation): F.relu
+(pool1): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)</p>
+<p>(flatten)</p>
+<p>(dropout): Dropout(p=0.3)
+(fc1): Linear(in_features=6272, out_features=500, bias=True)
+(activation): F.relu</p>
+<p>(dropout): Dropout(p=0.3)
+(fc2): Linear(in_features=500, out_features=133, bias=True)</p>
+<p><strong>explanations</strong></p>
+<p>The first convolution layer will have a kernel size of 3 and stride 2, this will decrease the input image size by half.
+The second convolution layer will also have a kernel size of 3 and stride 2, which will decrease the input image size by half.
+The third convolution layer will have a kernel size of 3.</p>
+<p>I have applied the max-pooling of stride 2 after each convolution layer to reduce the image size by half.
+I have also applied Relu activation for each of the convolution layers.</p>
+<p>Then, I have flattened the inputs and applied a dropout layer with probability as 0.3
+Two fully connected layers are applied with Relu activation and dropout 0.3 to produce the final output that will predict the classes of dog breed.</p>
 
 </div>
 </div>
@@ -14706,8 +14708,8 @@ Test Accuracy: 16% (139/836)
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>I picked ResNet as a transfer model because it performed outstanding on Image Classification. I looked into the structure and functions of ResNet. The core idea of ResNet is introducing a so-called “identity shortcut connection” that skips one or more layers. I guess this prevents overfitting when it's training.</p>
-<p>I've pull out the final Fully-connected layer and replaced with Fully-connected layer with output of 133 (dog breeds)</p>
+<p>I have selected the ResNet50 pre-trained model as it has good performance on Image classification. The main idea of this model is called 
+"identity shortcut connection" that skips one or more layers. This allows us to prevent overfitting while training. I have eventually added a final fully connected layer that will output the probabilities of 133 classes of dog breeds.</p>
 
 </div>
 </div>
@@ -15766,12 +15768,9 @@ If you were a dog..You may look like a Chihuahua
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong> (Three possible points for improvement)</p>
 <ol>
-<li><p>More image datasets of dogs will improve training models. Also, more image augmentations trials (flipping vertically, move left or right, etc.) will improve performance on test data.</p>
-</li>
-<li><p>Hyper-parameter tunings: weight initializings, learning rates, drop-outs, batch_sizes, and optimizers will be helpful to improve performances.</p>
-</li>
-<li><p>Ensembles of models</p>
-</li>
+<li>Adding more convolution layers (increasing the depth) and tuning different parameters like dropout, batch size, learning rate, etc can also improve the model performance.</li>
+<li>Image Augmentation will allow us to generate different types of images that will help us to increase the performance of the model and prevent overfitting.</li>
+<li>Using different optimizers like Adam, RMSProp, etc instead of the SGD optimizer (current) can better train the model.</li>
 </ol>
 
 </div>
